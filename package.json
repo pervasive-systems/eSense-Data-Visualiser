@@ -1,0 +1,26 @@
+{
+	"name": "eSenseVisualiser",
+	"version": "1.0.0",
+	"description": "eSenseDemo - RealTime Sensory Stream",
+	"main": "index.js",
+	"dependencies": {
+		"audio-buffer-from": "1.1.1",
+		"audio-format": "2.3.2",
+		"express": "4.16.4",
+		"log4js": "3.0.6",
+		"naudiodon": "0.4.7",
+		"socket.io": "2.1.1",
+		"uuid": "3.3.2"
+	},
+	"license": "UNLICENSED",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"devDependencies": {
+		"noble": "github:noble/noble#pull/804/head"
+	},
+	"engines": {
+		"node": "8.16.0",
+		"npm": "6.4.1"
+	}
+}

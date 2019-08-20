@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>eSense Visualiser</title>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/panel-style.css">
+  <link rel="stylesheet" href="css/animate.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/bootstrap4-toggle.min.css" />
+  <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/socket.io.js"></script>
+  <script src="js/smoothie.js"></script>
+  <script src="js/panel-main.js"></script>
+  <script src="js/bootstrap4-toggle.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="container-fluid">
+    <div class="row top-pane">
+      <div class="col-lg-1"><img src="images/eSense.png"></div>
+      <div class="col-lg-11" style="padding-top:30px; text-align:left;"> eSense Earable Visualiser</div>
+    </div>
+
+    <br /><br />
+
+
+    <div class="row device-pane">
+
+      <label for="earable-id">Earable ID</label>
+      <input type="text" class="form-control" id="eSense-id" placeholder="eSense-001"
+        style="width:200px; height:30px; padding-left:20px; margin-left:10px; margin-right:10px;">
+      <button type="button" id="connet-btn" class="btn btn-primary mb-2 btn-sm">Connect</button>
+
+    </div>
+
+
+
+
+    <BR>
+
+    <div class="row" id="config-pane">
+      <div class="col-lg-4">
+
+        <div class="card" style="max-width: 100%;">
+          <div class="card-header"><span class="lnr lnr-cog" style="padding-right:5px; font-size:20px;"></span> IMU
+            Configuration</div>
+          <div class="card-body">
+
+            <label style="padding-right:30px;">Motion Unit</label>
+            <input id="imu-switch" type="checkbox" data-toggle="toggle" data-style="android" data-onstyle="primary"
+              data-offstyle="secondary" data-size="xs">
+
+
+
+            <button type="button" id="calibrate-btn" class="btn btn-primary mb-2 btn-sm"
+              style="margin-left:185px;">Calibrate IMU</button>
+            <br />
+
+            <label style="padding-right:10px;">Sampling Rate</label>
+            <select id="imu-sampling-rate">
+              <option value="10" selected>Choose...</option>
+              <option value="10">10 Hz</option>
+              <option value="50">50 Hz</option>
+              <option value="100">100 Hz</option>
+            </select>
+
+            <br />
+
+            <label style="padding-right:25px;">Accel Range</label>
+            <select id="imu-acc-range">
+              <option value="1" selected>Choose...</option>
+              <option value="0">2g</option>
+              <option value="1">4g</option>
+              <option value="2">8g</option>
+              <option value="3">16g</option>
+            </select>
+
+            <label style="padding-left:30px; padding-right:20px;">Gyro Range</label>
+            <select id="imu-gyro-range">
+              <option value="1" selected>Choose...</option>
+              <option value="0">250 deg/s</option>
+              <option value="1">500 deg/s</option>
+              <option value="2">1000 deg/s</option>
+              <option value="3">2000 deg/s</option>
+
+            </select>
+
+            <br />
+
+            <label style="padding-right:42px;">Accel LPF</label>
+            <select id="imu-acc-lpf">
+              <option value="6" selected>Choose...</option>
+              <option value="0">460</option>
+              <option value="1">184</option>
+              <option value="2">92</option>
+              <option value="3">41</option>
+              <option value="4">20</option>
+              <option value="5">10</option>
+              <option value="6">5</option>
+              <option value="7">Disabled</option>
+            </select>
+
+
+            <label style="padding-left:30px; padding-right:40px;">Gyro LPF</label>
+            <select id="imu-gyro-lpf">
+              <option value="6" selected>Choose...</option>
+              <option value="0">250</option>
+              <option value="1">184</option>
+              <option value="2">92</option>
+              <option value="3">41</option>
+              <option value="4">20</option>
+              <option value="5">10</option>
+              <option value="6">5</option>
+              <option value="7">3600</option>
+              <option value="8">Disabled</option>
+
+
+            </select>
+            <br /><br />
+            <button type="button" id="imu-config-btn" class="btn btn-danger mb-2 btn-sm"
+              style="padding-left:20px; padding-right:20px;">Update IMU Configuration</button>
+
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="col-lg-4">
+        <div class="card" style="max-width: 100%;">
+          <div class="card-header"><span class="lnr lnr-cog" style="padding-right:5px; font-size:20px;"></span>
+            Microphone Configuration</div>
+          <div class="card-body" style="min-height:240px;">
+
+            <label style="padding-right:30px;">Microphone</label>
+            <input id="mic-switch" type="checkbox" data-toggle="toggle" data-style="android" data-onstyle="primary"
+              data-offstyle="secondary" data-size="xs">
+
+
+
+            <br />
+
+            <label style="padding-right:10px;">Sampling Rate</label>
+            <select id="mic-sampling-rate">
+              <option value="8000" selected>Choose...</option>
+              <option value="8000">8000 Hz</option>
+              <option value="16000">16000 Hz</option>
+            </select>
+
+            <br /><br />
+            <button type="button" id="mic-config-btn" class="btn btn-danger mb-2 btn-sm"
+              style="padding-left:20px; padding-right:20px;">Update Mic Configuration</button>
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4">
+        <div class="card" style="max-width: 100%;">
+          <div class="card-header"><span class="lnr lnr-cog" style="padding-right:5px; font-size:20px;"></span> BLE
+            Configuration</div>
+          <div class="card-body" style="min-height:240px;">
+
+            <label style="padding-right:30px;">Scan</label>
+            <input id="ble-switch" type="checkbox" data-toggle="toggle" data-style="android" data-onstyle="primary"
+              data-offstyle="secondary" data-size="xs">
+
+
+            <br />
+
+            <label style="padding-right:50px;">Adv Interval</label>
+            <label style="padding-right:10px;">Min</label>
+            <select id="ble-adv-int-min">
+              <option value="100" selected>Choose...</option>
+              <option value="100">100ms</option>
+              <option value="300">300ms</option>
+              <option value="600">600ms</option>
+              <option value="1000">1000ms</option>
+            </select>
+
+            <label style="padding-left:10px; padding-right:10px;">Max</label>
+            <select id="ble-adv-int-max">
+              <option value="100" selected>Choose...</option>
+              <option value="100">100ms</option>
+              <option value="300">300ms</option>
+              <option value="600">600ms</option>
+              <option value="1000">1000ms</option>
+            </select>
+
+            <br />
+
+            <label style="padding-right:40px;">Conn Interval</label>
+            <label style="padding-right:10px;">Min</label>
+            <select id="ble-conn-int-min">
+              <option value="20" selected>Choose...</option>
+              <option value="20">20ms</option>
+              <option value="40">40ms</option>
+              <option value="80">80ms</option>
+              <option value="120">120ms</option>
+            </select>
+
+            <label style="padding-left:10px; padding-right:10px;">Max</label>
+            <select id="ble-conn-int-max">
+              <option value="40" selected>Choose...</option>
+              <option value="20">20ms</option>
+              <option value="40">40ms</option>
+              <option value="80">80ms</option>
+              <option value="120">120ms</option>
+            </select>
+
+            <br /><br />
+            <button type="button" id="ble-config-btn" class="btn btn-danger mb-2 btn-sm"
+              style="padding-left:20px; padding-right:20px;">Update BLE Configuration</button>
+
+
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <BR>
+
+  <div class="row" id="imu-data-pane">
+    <div class="col-lg-6">
+
+      <div class="pane-title">
+        <div style="float:left">
+          <span class="lnr lnr-paw"></span> Accelerometer Data</div>
+        <div class="legend">
+          <span class="dot" style=" background-color:rgb(76,33,132)"></span> X
+          <span class="dot" style=" background-color:rgb(194,74,92)"></span>Y
+          <span class="dot" style=" background-color:rgb(113,200,68)"></span>Z
+        </div>
+      </div>
+      <canvas id="acc-data" width="700" height="300" style="margin-left:20px;"></canvas>
+
+    </div>
+
+
+
+    <div class="col-lg-6">
+
+      <div class="pane-title">
+        <div style="float:left"><span class="lnr lnr-move"></span> Gyroscope Data</div>
+        <div class="legend">
+          <span class="dot" style=" background-color:rgb(76,33,132)"></span> X
+          <span class="dot" style=" background-color:rgb(194,74,92)"></span>Y
+          <span class="dot" style=" background-color:rgb(113,200,68)"></span>Z
+        </div>
+      </div>
+
+
+      <canvas id="gyro-data" width="700" height="300" style="margin-left:20px;"></canvas>
+
+    </div>
+  </div>
+
+
+  <div class="row" id="mic-ble-data-pane">
+    <div class="col-lg-6">
+
+      <div class="pane-title">
+        <div style="float:left"><span class="lnr lnr-mic"></span> Microphone</div>
+        <div class="legend">
+          <span class="dot" style=" background-color:rgb(76,33,132)"></span> Samples
+        </div>
+      </div>
+
+
+      <canvas id="microphone-data" width="700" height="300" style="margin-left:20px;"></canvas>
+
+    </div>
+
+    <div class="col-lg-6">
+
+
+      <div class="pane-title">
+        <div style="float:left"><span class="lnr lnr-cog"></span> BLE Advertisement RSSI</div>
+        <div class="legend">
+          <span class="dot" style=" background-color:rgb(194,74,92)"></span> RSSI
+        </div>
+      </div>
+
+
+      <canvas id="ble-data" width="700" height="300" style="margin-left:20px;"></canvas>
+    </div>
+
+
+
+
+  </div>
+  <BR>
+
+
+  <!-- console pane -->
+
+  <div class="row">
+
+    <div class="col-lg-12 log-pane">
+      <div class="card console-card">
+        <div class="card-header">
+
+          <span class="lnr lnr-screen" style="padding-right:5px;  font-size:20px;"></span> Console
+          <div class="legend">
+            <span id="clear-btn" class="lnr lnr-redo" style="font-size:20px;"></span>
+          </div>
+        </div>
+
+        <div class="card-body" style="min-height:300px;">
+
+          <div id="console-pane"></div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+</body>
+
+</html>

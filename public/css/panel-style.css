@@ -1,0 +1,139 @@
+html{
+	 min-height: 100%;
+}
+
+body {
+	background-color: rgba(30,30,46,1.00) !important;
+	font-size:13px;
+	padding:0;
+	margin: 0;
+}
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: RobotoLight;
+  color: black;
+	font-weight: lighter;
+}
+
+
+.top-pane {
+	width: 100%;
+	height: 80px;
+	color: white;
+	font-size: 30px;
+	font-family: RobotoLight;
+	text-align: left;
+	letter-spacing: 5px;
+}
+
+.top-pane img {
+
+	height: 100px;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-right: 30px;
+}
+
+.card {
+	background-color: rgb(39,41,59) !important;
+	color: white;
+}
+.card-header {
+	line-height: 100%;
+	font-size: 20px;
+}
+
+.toggle.android { border-radius: 0px;}
+.toggle.android .toggle-handle { border-radius: 0px; }
+
+.select-style {
+	 background-color: blue ;
+	 color: red;
+	 border: 0 none;
+	 border-radius: 20px;
+	 padding: 6px 20px;
+	 width : 100px;
+ }
+
+.device-pane{
+
+	font-size: 20px;
+	color: white;
+	padding-left: 20px;
+	text-align:center
+
+}
+
+.pane-title {
+	background-color: rgb(18,26,33);
+	font-size: 20px;
+	color: white;
+	font-family: RobotoLight;
+	width:700px;
+	height:30px;
+	margin-top: 40px;
+	padding-left: 10px;
+	margin-left: 20px;
+	line-height: 30px;
+
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+	margin-right: 5px;
+	margin-left: 15px;
+}
+
+.legend {
+
+	width:300px;
+	float: right;
+	text-align: right;
+	font-size: 15px;
+	line-height: 30px;
+	margin-right: 20px;
+}
+
+.lnr{
+  color: #76b41c;
+  font-size: 20px;
+	padding-top: 10px;
+}
+
+.lnr-power-switch{
+  color: #76b41c;
+  font-size: 40px;
+}
+
+
+.log-pane {
+  min-height: 300px;
+	margin-left: 20px !important;
+	margin-right: 20px !important;
+}
+
+
+.console-card {
+	background-color: rgb(0,0,0) !important;
+	color: white;
+	max-width:94%;
+}
+
+div#console-pane {
+	margin-top: 20px;
+	min-height: 300px;
+	overflow:auto;
+	font-size: 14px;
+	font-family: RobotoLight;
+
+}
+
+p#datetime{
+	color:red;
+}
+div#status-msg{
+	color:white;
+}
