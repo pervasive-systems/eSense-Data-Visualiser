@@ -1,5 +1,5 @@
 # eSense Data Visualiser
-A node.js app to visualise and configure eSense sensory streams in real-time. 
+A node.js app to visualise and configure [eSense](http://www.esense.io) sensory streams in real-time. 
 
 ## Requirements
 At the moment only macOS is supported and specific versions of node.js and npm are required:
