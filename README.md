@@ -8,7 +8,7 @@ At the moment only macOS is supported and specific versions of node.js and npm a
 * npm version 6.4.1
 
 ## Documentation
-Find the library documentation at [this link](http://www.esense.io/share/eSense-Visualiser-Documentation.pdf).
+Find the app documentation at [this link](http://www.esense.io/share/eSense-Visualiser-Documentation.pdf).
 
 ## Credits
 Pervasive Systems team at Nokia Bell Labs Cambridge maintains this project voluntarily as a community service. Please [get in touch](mailto:info@esense.io) with us to contribute to this effort in advancing the earable computing research.
