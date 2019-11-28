@@ -17,7 +17,7 @@
 		"start": "node index.js"
 	},
 	"devDependencies": {
-		"noble": "github:noble/noble#pull/804/head"
+		"noble-mac": "https://github.com/Timeular/noble-mac.git"
 	},
 	"engines": {
 		"node": "8.16.0",
