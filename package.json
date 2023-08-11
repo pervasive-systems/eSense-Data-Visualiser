@@ -4,23 +4,21 @@
 	"description": "eSenseDemo - RealTime Sensory Stream",
 	"main": "index.js",
 	"dependencies": {
-		"audio-buffer-from": "1.1.1",
-		"audio-format": "2.3.2",
-		"express": "4.16.4",
-		"log4js": "3.0.6",
-		"naudiodon": "0.4.7",
-		"socket.io": "2.1.1",
-		"uuid": "3.3.2"
+		"@abandonware/noble": "^1.9.2-11",
+		"audio-buffer-from": "^1.1.1",
+		"audio-format": "^2.3.2",
+		"express": "^4.17.1",
+		"log4js": "^6.3.0",
+		"naudiodon": "^2.3.4",
+		"socket.io": "^3.1.2",
+		"uuid": "^8.3.2"
 	},
 	"license": "UNLICENSED",
 	"scripts": {
 		"start": "node index.js"
 	},
-	"devDependencies": {
-		"noble-mac": "https://github.com/Timeular/noble-mac.git"
-	},
 	"engines": {
-		"node": "8.16.0",
-		"npm": "6.4.1"
+		"node": "14.16.0",
+		"npm": "6.14.11"
 	}
 }

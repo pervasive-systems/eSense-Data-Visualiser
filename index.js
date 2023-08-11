@@ -1,7 +1,8 @@
 var express = require('express');
 var path = require('path');
 var log4js = require('log4js');
-const noble = require('noble-mac');
+// const noble = require('noble-mac');
+const noble = require('@abandonware/noble');
 var earbud = null
 var createBuffer = require('audio-buffer-from')
 var format = require('audio-format')
@@ -498,11 +499,13 @@ function enableAndReadSensor(control_characteristic, data_characteristic, imu_sa
 */
 function createAudioInput(audio_sample_rate) {
 	// Create an instance of AudioInput, which is a ReadableStream
-	var ai = new portAudio.AudioInput({
-		channelCount: 1,
-		sampleFormat: portAudio.SampleFormat16Bit,
-		sampleRate: audio_sample_rate,
-		deviceId: -1 // Use -1 or omit the deviceId to select the default device
+	var ai = new portAudio.AudioIO({
+		inOptions: {
+			channelCount: 1,
+			sampleFormat: portAudio.SampleFormat16Bit,
+			sampleRate: audio_sample_rate,
+			deviceId: -1 // Use -1 or omit the deviceId to select the default device
+		}
 	});
 
 	// handle errors from the AudioInput
@@ -513,6 +516,8 @@ function createAudioInput(audio_sample_rate) {
 		while (null !== (chunk = ai.read())) {
 			var f = { format: format.parse('int16 mono le ' + audio_sample_rate) };
 			var buffer = createBuffer(chunk, f);
+			// console.log(buffer);
+			// console.log(typeof(buffer));
 			io.sockets.emit('microphone', { x: buffer.getChannelData(0) });
 		}
 	})

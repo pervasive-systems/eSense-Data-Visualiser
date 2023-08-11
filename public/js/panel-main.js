@@ -46,9 +46,17 @@ $(document).ready(function () {
 
   socket.on('microphone', function (data) {
     var time = new Date().getTime()
-    for (var i in data.x) {
-      microphone_data.append(time, data.x[i]);
+    let dataView = new Float32Array(data.x);
+    // console.log(time);
+    // console.log(dataView.length);
+    for (let i = 0; i < dataView.length; i+=20) {
+      microphone_data.append(time, dataView[i]);
+      time += 2.5
+      // console.log(dataView[i]);
     }
+    // for (var i in data.x) {
+    //   microphone_data.append(time, data.x[i]);
+    // }
   });
 
   socket.on('rssi', function (data) {
